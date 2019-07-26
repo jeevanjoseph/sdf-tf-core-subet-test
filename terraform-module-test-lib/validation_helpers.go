@@ -138,14 +138,14 @@ func HTTPGetWithAuth(t *testing.T, url string, username string, password string)
 // HTTPGetWithStatusValidation sends HTTP get request to the URL given in the parameter and verify that
 // the response status is expected
 func HTTPGetWithStatusValidation(t *testing.T, url string, expected_status int) {
-	status, _ := http_helper.HttpGet(t, url)
+	status, _ := http_helper.HttpGet(t, url, nil)
 	assert.Equal(t, status, expected_status)
 }
 
 // HTTPGetWithBodyValidation sends HTTP get request to the URL given in the parameter and verify that the
 // response body is expected
 func HTTPGetWithBodyValidation(t *testing.T, url string, expected_body string) {
-	_, body := http_helper.HttpGet(t, url)
+	_, body := http_helper.HttpGet(t, url, nil)
 	assert.Equal(t, strings.Compare(body, expected_body), 0)
 }
 
