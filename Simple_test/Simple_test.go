@@ -3,7 +3,6 @@ package test
 import (
 	"os"
 	//"src/modules/logger"
-	"time"
 
 	"testing"
 
@@ -41,11 +40,10 @@ func TestSimple(t *testing.T) {
 	expectedVcnLabel = vars.Vcn_label
 	expectedSubnets = vars.Vcn_expectedSubnets
 
-	defer terraform.Destroy(t, terraformOptions)
 	terraform.Init(t, terraformOptions)
 	terraform.Apply(t, terraformOptions)
-	time.Sleep(60)
 	startTests(t, terraformOptions)
+	terraform.Destroy(t, terraformOptions)
 
 }
 
