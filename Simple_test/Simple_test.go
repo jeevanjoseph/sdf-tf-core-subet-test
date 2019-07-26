@@ -95,7 +95,7 @@ func testSubnet(t *testing.T, subnets []core.Subnet) {
 func configureTerraformOptions(t *testing.T, terraformDir string) *terraform.Options {
 
 	terraformOptions := &terraform.Options{
-		TerraformDir: "../../sdf-tf-core-subnet/examples/simple",
+		TerraformDir: "../../sdf-core-subnet/examples/simple",
 		Vars: map[string]interface{}{
 			"default_compartment_id": os.Getenv("TF_VAR_compartment_id"),
 			"tenancy_id":             os.Getenv("TF_VAR_tenancy_id"),
