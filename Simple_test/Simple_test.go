@@ -26,7 +26,7 @@ var expectedSubnets int
 func TestSimple(t *testing.T) {
 	t.Parallel()
 
-	terraformDir := "../../sdf-tf-core-subnet/examples/simple"
+	terraformDir := "../../sdf-core-subnet/examples/simple"
 	terraformOptions := configureTerraformOptions(t, terraformDir)
 
 	var vars Inputs
