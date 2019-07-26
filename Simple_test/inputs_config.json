@@ -1,6 +1,6 @@
 {
-    "vcn_display_name": "terravcn",
+    "vcn_display_name": "temp",
     "vcn_cidr": "192.168.0.0/16",
-    "vcn_label": "terravcn",
+    "vcn_label": "temp",
     "vcn_expectedSubnets": 5
   }

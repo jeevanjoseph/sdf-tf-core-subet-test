@@ -3,6 +3,7 @@ package test
 import (
 	"os"
 	"src/modules/logger"
+	"time"
 
 	"testing"
 
@@ -25,7 +26,7 @@ var expectedSubnets int
 func TestSimple(t *testing.T) {
 	t.Parallel()
 
-	terraformDir := "../terraform_config/simple"
+	terraformDir := "../../sdf-tf-core-subnet/examples/simple"
 	terraformOptions := configureTerraformOptions(t, terraformDir)
 
 	var vars Inputs
@@ -43,7 +44,7 @@ func TestSimple(t *testing.T) {
 	defer terraform.Destroy(t, terraformOptions)
 	terraform.Init(t, terraformOptions)
 	terraform.Apply(t, terraformOptions)
-
+	time.Sleep(60)
 	startTests(t, terraformOptions)
 
 }
@@ -53,7 +54,7 @@ func startTests(t *testing.T, terraformOptions *terraform.Options) {
 	//The below is validation by Go SDK
 	context, client := network_module_helpers.CreateVNCClient()
 	var id string
-	id = os.Getenv("TF_VAR_compartment_ocid")
+	id = os.Getenv("TF_VAR_compartment_id")
 
 	// Using Helpers:
 	vcns := network_module_helpers.ListVCN(context, client, id)
@@ -94,11 +95,11 @@ func testSubnet(t *testing.T, subnets []core.Subnet) {
 func configureTerraformOptions(t *testing.T, terraformDir string) *terraform.Options {
 
 	terraformOptions := &terraform.Options{
-		TerraformDir: "../terraform_config/simple",
+		TerraformDir: "../../sdf-tf-core-subnet/examples/simple",
 		Vars: map[string]interface{}{
-			"default_compartment_id": os.Getenv("TF_VAR_compartment_ocid"),
-			"tenancy_id":             os.Getenv("TF_VAR_tenancy_ocid"),
-			"user_id":                os.Getenv("TF_VAR_user_ocid"),
+			"default_compartment_id": os.Getenv("TF_VAR_compartment_id"),
+			"tenancy_id":             os.Getenv("TF_VAR_tenancy_id"),
+			"user_id":                os.Getenv("TF_VAR_user_id"),
 			"region":                 os.Getenv("TF_VAR_region"),
 		},
 		Upgrade: true,
