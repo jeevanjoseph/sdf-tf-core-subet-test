@@ -2,7 +2,7 @@ package test
 
 import (
 	"os"
-	"src/modules/logger"
+	// "src/modules/logger"
 	"time"
 
 	"testing"
@@ -32,7 +32,7 @@ func TestSimple(t *testing.T) {
 	var vars Inputs
 	err := test_helper.GetConfig("inputs_config.json", &vars)
 	if err != nil {
-		logger.Logf(t, err.Error())
+		// logger.Logf(t, err.Error())
 		t.Fail()
 	}
 
