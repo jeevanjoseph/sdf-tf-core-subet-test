@@ -10,8 +10,9 @@ import (
 
 func CreateVNCClient() (context.Context, core.VirtualNetworkClient) {
 	ctx := context.Background()
-
-	c, err := core.NewVirtualNetworkClientWithConfigurationProvider(common.DefaultConfigProvider())
+	configProvider = common.DefaultConfigProvider()
+	fmt.Println(configProvider)
+	c, err := core.NewVirtualNetworkClientWithConfigurationProvider(configProvider)
 	if err != nil {
 		fmt.Println(err)
 	}
